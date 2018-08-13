@@ -1,17 +1,11 @@
-version: '3.6'
+version: '3.7'
 
 services:
-
-#    http-client-battle:
-#      image: bb/workout/http-client-battle
-#      build:
-#        context: .
-#      environment:
-#        JAEGER_SERVICE_NAME: http-client-battle
 
   jaeger:
     image: jaegertracing/all-in-one
     network_mode: bridge
+    restart: always
     ports:
       - 5775:5775/udp
       - 6831:6831/udp
@@ -33,6 +27,7 @@ services:
   prometheus-pushgateway:
     image: prom/pushgateway
     network_mode: bridge
+      restart: always
     ports:
       - 9091:9091
 
