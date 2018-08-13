@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+
+    http-client-battle:
+
+      image: bb/workout/http-client-battle
+      network_mode: bridge
+      build:
+        context: ../
+      environment:
+        JAEGER_SERVICE_NAME: http-client-battle
+        JAEGER_AGENT_HOST: 172.24.40.97
+        MAX_REQUEST_PER_MINUTE: 1
+        TEST_DURATION_SECONDS: 3
+        PROMETHEUS_PUSHGATEWAY: 172.24.40.97:9091
+        URL_SERVER_PROTOCOL: http
+        URL_SERVER_DOMAIN: 172.24.40.97
+        URL_SERVER_PORT: 8080
+        URL_SERVER_PATH: /hit_me
+        URL_SERVER: http://172.24.40.97:8080/hit_me
+      volumes:
+      - ${CLIENT_JAR}:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/httpclientbattle/jetty/0.0.1/jetty-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/http-client-battle_async-http-client/0.0.1/http-client-battle_async-http-client-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/Downloads/FuelHttpClient-all-1.0-SNAPSHOT.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/Downloads/JettyHttpClientKotlin-all-1.0-SNAPSHOT.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/Downloads/ApacheHttpClientJava-all-1.0-SNAPSHOT.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/Downloads/ApacheHttpClient-all-1.0-SNAPSHOT.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/http-client-battle_finagle/0.0.1/http-client-battle_finagle-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/http-client-battle_jdk/0.0.1/http-client-battle_jdk-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/http-client-battle_rx-netty/0.0.1/http-client-battle_rx-netty-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/http-client-battle_wizzardo/0.0.1/http-client-battle_wizzardo-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/httpclientbattle/skinny/0.0.1/skinny-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/httpclientbattle/google-http-client/0.0.1/google-http-client-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar
+      #- /home/bruno/.m2/repository/br/com/labbs/workout/httpclientbattle/jodd/0.0.1/jodd-0.0.1-jar-with-dependencies.jar:/opt/http-client-battle/client-jar/http-client.jar

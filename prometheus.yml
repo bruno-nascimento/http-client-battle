@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 500ms
+  evaluation_interval: 500ms
+  scrape_timeout: 490ms
+
+scrape_configs:
+
+  - job_name: 'http-client-battle'
+    honor_labels: true
+    static_configs:
+      - targets: ['172.24.40.97:9091']
